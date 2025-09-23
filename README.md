@@ -8,7 +8,7 @@
 
 1. Клонируйте репозиторий:
 ```
-git@github.com:Elena-Kandrushina/homework.git
+git@github.com:Elena-Kandrushina/oop_project.git
 ```
 
 2. Установите зависимости:
