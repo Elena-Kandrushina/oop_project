@@ -67,7 +67,7 @@ class Category:
     def products(self):
         product_str = ""
         for product in self.__products:
-            product_str = f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return product_str
 
     @products.setter
@@ -76,7 +76,7 @@ class Category:
         Category.product_count += 1
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":     # pragma: no cover
     product1 = Product(
         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
     )

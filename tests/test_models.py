@@ -24,7 +24,7 @@ def test_category_init(category_empty):
 
 def test_category_init_with_products(category_with_products, product2):
     assert category_with_products.name == "Смартфоны"
-    assert len(category_with_products.products) == 40
+    assert len(category_with_products.products) == 95
     assert product2.name in category_with_products.products
     assert Category.category_count == 1
     assert Category.product_count == 2
@@ -53,7 +53,7 @@ def test_multiple_categories_and_products(product1, product2):
 def test_product_count_consistency(category_with_products, product1):
     initial_count = Category.product_count
     category_with_products.add_product(product1)
-    assert len(category_with_products.products) == 55
+    assert len(category_with_products.products) == 150
     assert Category.product_count == initial_count + 1
 
 
