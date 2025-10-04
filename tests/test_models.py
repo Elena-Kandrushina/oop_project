@@ -24,7 +24,7 @@ def test_category_init(category_empty):
 
 def test_category_init_with_products(category_with_products, product2):
     assert category_with_products.name == "Смартфоны"
-    assert len(category_with_products.products) == 95
+    assert len(category_with_products.products) == 97
     assert product2.name in category_with_products.products
     assert Category.category_count == 1
     assert Category.product_count == 2
@@ -35,7 +35,7 @@ def test_adding_product_updates_counts(category_empty, product1):
     category_empty.add_product(product1)
     assert product1.name in category_empty.products
     assert Category.product_count == old_product_count + 1
-    assert len(category_empty.products) == 55
+    assert len(category_empty.products) == 56
 
 
 def test_multiple_categories_and_products(product1, product2):
@@ -46,14 +46,14 @@ def test_multiple_categories_and_products(product1, product2):
     cat2.add_product(product2)
     assert Category.category_count == 2
     assert Category.product_count == 2
-    assert len(cat1.products) == 55
-    assert len(cat2.products) == 40
+    assert len(cat1.products) == 56
+    assert len(cat2.products) == 41
 
 
 def test_product_count_consistency(category_with_products, product1):
     initial_count = Category.product_count
     category_with_products.add_product(product1)
-    assert len(category_with_products.products) == 150
+    assert len(category_with_products.products) == 153
     assert Category.product_count == initial_count + 1
 
 
@@ -116,3 +116,22 @@ def test_price_setter_zero_or_negative(capsys, product1):
     assert "Цена не должна быть нулевая или отрицательная" in captured.out
     assert product1.price == 180000.0
     assert product1._Product__price == 180000.0
+
+
+def test_str(product1):
+    expected_str = (
+        f"{product1.name}, {product1.price} руб. Остаток: {product1.quantity} шт.\n"
+    )
+    assert str(product1) == expected_str
+
+
+def test_add(product1, product2):
+    total_value = (product1._Product__price * product1.quantity) + (
+        product2._Product__price * product2.quantity
+    )
+    assert product1 + product2 == total_value
+
+
+def test_category_str(category_with_products):
+    expected_str = "Смартфоны, количество продуктов: 13 шт."
+    assert str(category_with_products) == expected_str
