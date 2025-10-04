@@ -130,3 +130,8 @@ def test_add(product1, product2):
         product2._Product__price * product2.quantity
     )
     assert product1 + product2 == total_value
+
+
+def test_category_str(category_with_products):
+    expected_str = "Смартфоны, количество продуктов: 13 шт."
+    assert str(category_with_products) == expected_str
