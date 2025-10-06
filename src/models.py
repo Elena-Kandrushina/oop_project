@@ -24,14 +24,10 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.\n"
 
     def __add__(self, other):
-        if (
-            type(other) is Smartphone
-            or type(other) is LawnGrass
-            or type(other) is Product
-        ):
-            return (self.__price * self.quantity) + (other.__price * other.quantity)
-        else:
+        if type(self) is not type(other):
             raise TypeError
+        else:
+            return (self.__price * self.quantity) + (other.__price * other.quantity)
 
     @classmethod
     def new_product(cls, product_dict):
@@ -77,15 +73,11 @@ class Category:
 
     def add_product(self, product):
         """Метод для добавления продукта в категорию."""
-        if (
-            isinstance(product, Product)
-            or issubclass(LawnGrass, Product)
-            or issubclass(Smartphone, Product)
-        ):
+        if not isinstance(product, Product):
+            raise TypeError
+        else:
             self.__products.append(product)
             Category.product_count += 1
-        else:
-            raise TypeError
 
     @property
     def products(self):
