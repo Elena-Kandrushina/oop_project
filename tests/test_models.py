@@ -135,3 +135,24 @@ def test_add(product1, product2):
 def test_category_str(category_with_products):
     expected_str = "Смартфоны, количество продуктов: 13 шт."
     assert str(category_with_products) == expected_str
+
+
+def test_smartphone_init(product3):
+    assert product3.name == "Samsung Galaxy S23 Ultra"
+    assert product3.price == 180000.0
+    assert product3.quantity == 5
+    assert "256GB" in product3.description
+    assert product3.efficiency == 95.5
+    assert "S23 Ultra" in product3.model
+    assert product3.memory == 256
+    assert "Серый" in product3.color
+
+
+def test_LawnGrass_init(product4):
+    assert "Газонная трава" in product4.name
+    assert "Элитная трава для газона" in product4.description
+    assert product4.price == 500.0
+    assert product4.quantity == 20
+    assert "Россия" in product4.country
+    assert "7 дней" in product4.germination_period
+    assert "Зеленый" in product4.color
