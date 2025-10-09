@@ -156,3 +156,12 @@ def test_LawnGrass_init(product4):
     assert "Россия" in product4.country
     assert "7 дней" in product4.germination_period
     assert "Зеленый" in product4.color
+
+
+def test_mixin_print(capsys):
+    Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    message_output = capsys.readouterr()
+    assert (
+        message_output.out.strip()
+        == "Product(Xiaomi Redmi Note 11, 1024GB, Синий, 31000.0, 14)"
+    )
