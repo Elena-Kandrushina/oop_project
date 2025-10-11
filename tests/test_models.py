@@ -1,3 +1,5 @@
+import pytest
+
 from src.models import Category, Product
 
 
@@ -165,3 +167,16 @@ def test_mixin_print(capsys):
         message_output.out.strip()
         == "Product(Xiaomi Redmi Note 11, 1024GB, Синий, 31000.0, 14)"
     )
+
+
+def test_zero_quantity_raises():
+    with pytest.raises(
+        ValueError, match="Товар с нулевым количеством не может быть добавлен"
+    ):
+        Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 0)
+    assert "Товар с нулевым количеством не может быть добавлен"
+
+
+def test_middle_price():
+    category = Category("Смартфоны", "Категория смартфонов", products=[])
+    assert category.middle_price() == 0
